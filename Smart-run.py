@@ -272,7 +272,9 @@ def main():
             sys.stdout.flush()
             time.sleep(0.08)
     print(f"\r{Fore.WHITE}Launch!{' ' * 20}")
-    print(Fore.CYAN + f"[L7] Request -> {url} ✅")
+    print(f"\r{Fore.YELLOW} [*] {Fore.BLUE}T0UFAN AL-AQSHA {Fore.WHITE}=>  {Fore.RED}Attack status {Fore.YELLOW}=> {Fore.MAGENTA} {remaining_time:.2f} sec left ")
+    print(f"\r{Fore.WHITE} [*] {Fore.GREEN}T0UFAN AL-AQSHA {Fore.RED}=>  {Fore.WHITE}Status attack {Fore.GREEN}=> {Fore.CYAN} {remaining_time:.2f} sec left ")
+    
 
     # wait for completion
     while time.time() < end_ts and not shutdown_flag.is_set():
