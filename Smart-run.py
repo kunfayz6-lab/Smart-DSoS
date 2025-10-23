@@ -12,21 +12,21 @@ if not __name__ == "__main__":
       
 class ConsoleColors:
     def warna():
-'\033[2mgray = abu-abu
-'\033[31mred = merah
-'\033[32mgreen = hijau
-'\033[33myellow = kuning
-'\033[34mblue = biru
-'\033[35mpurple = ungu
-'\033[36mcyan = cyan
-'\033[90mdark gray = abu-abu gelap
+\033[2mgray = abu-abu
+\033[31mred = merah
+\033[32mgreen = hijau
+\033[33myellow = kuning
+\033[34mblue = biru
+\033[35mpurple = ungu
+\033[36mcyan = cyan
+\033[90mdark gray = abu-abu gelap
 
 def warnabg():
 Background color
-'\033[7mwhite = putih
-'\033[40mblack = hitam
-'\033[41mred = merah
-'\033[42mgreen = hijau
+\033[7mwhite = putih
+\033[40mblack = hitam
+\033[41mred = merah
+\033[42mgreen = hijau
 '\033[43myellow = kuning
 '\033[44mblue = biru
 '\033[45mpurple = ungu
