@@ -55,10 +55,9 @@ def print_banner():
             frame = SPINNER_FRAMES[_ % len(SPINNER_FRAMES)]
             sys.stdout.write(f"\r{Fore.CYAN}{frame} {line}")
             sys.stdout.flush()
-            peint(f"{Fore.YELLOW} Attack berjalan ke {Fore.GREEN}[" +str(url)+ "]")
+            print(f"{Fore.YELLOW} Attack berjalan ke {Fore.GREEN}[" +str(url)+ "]")
             time.sleep(0.05)
         print(f"\r{Fore.GREEN}✔ {line}{' ' * 20}")
-        
     print("")
 
 # --------- Worker Logic ---------
