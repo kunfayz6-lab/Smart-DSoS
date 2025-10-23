@@ -78,8 +78,7 @@ status_code = False
 id_loader = 0
 def runing_attack(ip,host,port_loader,time_loader,spam_loader,methods_loader,booter_sent,data_type_loader_packet):
     global status_code,id_loader
-           if status_code == True:
-
+        
 #DATA
 banner = f"""
 {Fore.WHITE}  ╔═══════════{Fore.GREEN}   ╔══════════{Fore.YELLOW}  ╔══════════╗{Fore.LIGHTBLUE_EX} ╔═════════╗{Fore.RED}╔══╗    ╔══╗
