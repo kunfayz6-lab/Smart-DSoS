@@ -92,7 +92,7 @@ banner = f"""
 {Fore.GREEN}╔═════════════════════════════════════════════════════════════════╗
 {Fore.GREEN}║{Fore.YELLOW}   Design By: Kun/https://github.com/abatatsa99                  {Fore.GREEN}║
 {Fore.GREEN}╚═════════════════════════════════════════════════════════════════╝
-{Fore.GREEN}===>> Z E E F U MEMBUTUHKAN 35 DETIK UNTUK MEMULAI SERANGAN...!! <==={Fore.RESET}"""
+{Fore.GREEN}===>> Z E E F U MEMBUTUHKAN 35 DETIK UNTUK MEMULAI SERANGAN...!! <==={Fore.RESET}""")
 
 print(banner)
 host = ""
