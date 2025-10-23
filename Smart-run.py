@@ -11,13 +11,61 @@ if not __name__ == "__main__":
     exit()
       
 class ConsoleColors:
-    HEADER = 
-    OKBLUE = 
-    OKGREEN = 
-    WARNING = 
-    FAIL = 
-    BOLD = 
-    
+    def warna():
+\033[2mgray = abu-abu
+\033[31mred = merah
+\033[32mgreen = hijau
+\033[33myellow = kuning
+\033[34mblue = biru
+\033[35mpurple = ungu
+\033[36mcyan = cyan
+\033[90mdark gray = abu-abu gelap
+
+def warnabg():
+Background color
+\033[7mwhite = putih
+\033[40mblack = hitam
+\033[41mred = merah
+\033[42mgreen = hijau
+\033[43myellow = kuning
+\033[44mblue = biru
+\033[45mpurple = ungu
+\033[46mcyan = cyan
+warnabg()
+
+def warnacerah():
+\033[91mbright red = merah cerah
+\033[92mbright green = hijau cerah
+\033[93mbright yellow = kuning cerah
+\033[94mbright blue = biru cerah
+\033[95mbrightpurple=Ungu cerah
+\033[96mbright cyan=cyan cerah
+\033[97mbright white=putih cerah
+
+warnacerah()
+\033[47mbright gray=abu² cerah
+\033[100mdarklightgray=abu-abu gelap
+\033[101mbright red=merah cerah
+\033[102mbright green=hijau cerah
+\033[104mbright blue=biru cerah
+\033[105mbright purple=ungu cerah
+\033[106mbright cyan=cyan cerah
+\033[103mbright yellow=kuning cerah
+
+peint("""
+\033[96m\033[102m
+\033[96m
+\033[96m
+\033[96m
+\033[96m
+\033[96m
+\033[96m
+\033[96m
+\033[96m
+\033[96m
+\033[96m
+\033[96m
+""")
 print(ConsoleColors.BOLD + ConsoleColors.WARNING + '''
  ____       ____      _____           
 
