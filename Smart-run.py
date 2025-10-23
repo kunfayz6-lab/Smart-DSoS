@@ -272,7 +272,7 @@ def main():
             sys.stdout.flush()
             time.sleep(0.08)
     print(f"\r{Fore.WHITE}Launch!{' ' * 20}")
-    print(f"\r{Fore.CYAN}sending-attack to target
+    print(Fore.CYAN + f"[L7] Request -> {url} ✅")
 
     # wait for completion
     while time.time() < end_ts and not shutdown_flag.is_set():
