@@ -11,25 +11,17 @@ if not __name__ == "__main__":
     exit()
       
 class ConsoleColors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    BOLD = '\033[1m'
+    HEADER = 
+    OKBLUE = 
+    OKGREEN = 
+    WARNING = 
+    FAIL = 
+    BOLD = 
     
 print(ConsoleColors.BOLD + ConsoleColors.WARNING + '''
- ____       ____      _____           _ 
-|  _ \  ___/ ___|    |_   _|__   ___ | |
-| | | |/ _ \___ \ _____| |/ _ \ / _ \| |
-| |_| | (_) |__) |_____| | (_) | (_) | |
-|____/ \___/____/      |_|\___/ \___/|_|
+ ____       ____      _____           
 
-         written by: depascaldc
-         for private USAGE ONLY
-         Make sure you have the
-        permission to attack the
-               given host
+         written by:••••
                
       ''')
     
@@ -83,12 +75,7 @@ def goForDosThatThing():
 try:
         
     print(ConsoleColors.BOLD + ConsoleColors.OKBLUE + '''
-    _   _   _             _      ____  _             _   _             
-   / \ | |_| |_ __ _  ___| | __ / ___|| |_ __ _ _ __| |_(_)_ __   __ _ 
-  / _ \| __| __/ _` |/ __| |/ / \___ \| __/ _` | '__| __| | '_ \ / _` |
- / ___ \ |_| || (_| | (__|   <   ___) | || (_| | |  | |_| | | | | (_| |
-/_/   \_\__|\__\__,_|\___|_|\_\ |____/ \__\__,_|_|   \__|_|_| |_|\__, |
-                                                                 |___/ 
+    _   _   _             _      _                                                                 |___/ 
           ''')
     print(ConsoleColors.BOLD + ConsoleColors.OKGREEN + "LOADING >> [                    ] 0% ")
     time.sleep(1)
