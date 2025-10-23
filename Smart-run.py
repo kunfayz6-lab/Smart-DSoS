@@ -271,7 +271,8 @@ def main():
             sys.stdout.write(f"\r{Fore.YELLOW}{frame} Launch in {s}…")
             sys.stdout.flush()
             time.sleep(0.08)
-    print(f"\r{Fore.GREEN}attack to {Fore.YELLOW}[" +str(⣾)+ "]Launch!{' ' * 20}")
+    print(f"\r{Fore.WHITE}Launch!{' ' * 20}")
+    print(f"\r{Fore.CYAN}sending-attack to target
 
     # wait for completion
     while time.time() < end_ts and not shutdown_flag.is_set():
